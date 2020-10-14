@@ -2,5 +2,5 @@
     <string name="app_name">represent</string>
     <string name="represent_">Represent!</string>
     <string name="find_your_r">Find your representatives</string>
-    <string name="enter_your_">Enter your address</string>
+    <string name="enter_your_">Search an Address</string>
 </resources>
