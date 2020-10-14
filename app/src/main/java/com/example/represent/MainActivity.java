@@ -18,15 +18,27 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.Manifest;
+import android.view.View;
+
+import android.widget.ImageButton;
+import android.widget.EditText;
+
 
 public class MainActivity extends AppCompatActivity {
+
+    // Declare widgets
+    ImageButton getGPS;
+    EditText searchAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //// Get GPS Cords
+        getGPS = findViewById(R.id.getGPS);
+        searchAddress = findViewById(R.id.searchAddress);
+
+        // Start Listening for GPS coordinates
         // 1. Check the app has been granted the right permissions by the user
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Log.d("permission-check", "Invalid permissions to perform GPS check");
@@ -47,57 +59,87 @@ public class MainActivity extends AppCompatActivity {
                 double longitude=0;
                 latitude = location.getLatitude();
                 longitude = location.getLongitude();
-                Log.d("latlon", "LatLon: " + latitude + ", " + longitude);
+                Log.d("latlon", "GPS Changed: " + latitude + ", " + longitude);
             }
         };
 
         // 3. Start the Listener
-        LocationManager mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        final LocationManager mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000,
-                0, mLocationListener);
+                1, mLocationListener);
 
-        // 4. Example for getting the last known location
-        Location gpsTest = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        Log.d("location", "GPS Test: " + gpsTest.getLatitude() + ", " + gpsTest.getLongitude());
+        // Add a click event for the button (execute the convert method when clicked)
+        getGPS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fetchLocation(mLocationManager);
+            }
+        });
+    }
 
-        //// Perform API request with RequestQueue
+    private void fetchLocation(LocationManager mLocationManager) {
+        // Reverse Geocoding API Request
         RequestQueue queue = Volley.newRequestQueue(this);
         String API_KEY = "AIzaSyBRmaiRao6Mwxqr5Luxvnpc5wuTewDl7J4";
-        String address = "94110";
-        String url ="https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=" + API_KEY;
+        String type = "result_type=street_address";
+        String latLng = currentGPS(mLocationManager);
+        String url = "https://maps.googleapis.com/maps/api/geocode/json?" + type + "&latlng=" + latLng + "&key=" + API_KEY;
 
-        // Request a string response from the provided URL.
+        // Request a json response from the API endpoint
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        // Display the first 500 characters of the response string.
 
-                        // String results = response.optString("results");
-                        JSONArray arrayResults = new JSONArray();
-                        Object firstResult = new Object();
+                        // Declare variables
+                        // JSONArray arrayResults = new JSONArray();
+                        JSONObject result;
+                        String formattedAddress = new String();
 
                         try {
-                            arrayResults = response.getJSONArray("results");
-                            firstResult = arrayResults.get(0);
+                            result = (JSONObject)response.getJSONArray("results").get(0);
+                            formattedAddress = (String)result.get("formatted_address");
                         }
                         catch (JSONException e) {
+                            Log.d("errorParse", "Error Parsing JSON Response");
                             e.printStackTrace();
                         }
 
-                        Log.d("success", "Full response: " + response);
-                        Log.d("test", "Test: " + firstResult);
-                        // textView.setText("Response is: "+ response.substring(0,500));
+                        Log.d("successParse", "Formatted Address: " + formattedAddress);
+                        searchAddress.setText("" + formattedAddress);
                     }
                 }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                 Log.d("error", "Error: " + error);
-                // textView.setText("That didn't work!");
-            }
-        });
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("error", "Error: " + error);
+                        searchAddress.setText("Error Converting Address");
+                    }
+                });
 
         // Add the API request to the RequestQueue.
         queue.add(jsonObjectRequest);
+    }
+
+    private String currentGPS(LocationManager mLocationManager) {
+        String latLng = "0,0";
+
+        // Check Permissions
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            Log.d("permission-check", "Invalid permissions to perform GPS check");
+            // To Do: Currently need to manually set the location permissions in the emulator settings
+            // (cont.) Request permission instead
+            // example:
+            // ActivityCompat.requestPermissions(this, new String[] {
+            //                Manifest.permission.ACCESS_FINE_LOCATION,
+            //                Manifest.permission.ACCESS_COARSE_LOCATION },
+            //        TAG_CODE_PERMISSION_LOCATION);
+        } else {
+            // Get current gps cords
+            Location currentGPS = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            latLng = currentGPS.getLatitude() + "," + currentGPS.getLongitude();
+            Log.d("location", "Current GPS: " + latLng);
+        }
+
+        return latLng;
     }
 }

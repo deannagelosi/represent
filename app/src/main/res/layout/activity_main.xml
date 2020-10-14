@@ -96,7 +96,7 @@
         app:layout_constraintVertical_bias="0.575" />
 
     <EditText
-        android:id="@+id/editTextTextPostalAddress2"
+        android:id="@+id/searchAddress"
         android:layout_width="252dp"
         android:layout_height="23dp"
         android:background="@android:color/white"
@@ -156,7 +156,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPostalAddress2"
+        app:layout_constraintStart_toEndOf="@+id/searchAddress"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.609" />
 
