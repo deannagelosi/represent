@@ -178,39 +178,38 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         // Declare variables
-                        // JSONArray arrayResults = new JSONArray();
                         // String formattedAddress = new String();
-                        JSONObject divisions;
                         JSONArray offices;
+                        JSONObject divisions;
                         JSONArray officials ;
 
-
                         try {
-                            divisions = response.getJSONObject("divisions");
                             offices = response.getJSONArray("offices");
+                            divisions = response.getJSONObject("divisions");
                             officials = response.getJSONArray("officials");
 
-                            JSONArray divNames = divisions.names();
-                            JSONArray divValues = new JSONArray();
+                            for (int i = 0; i < offices.length(); i++) {
+                                // Loop the offices and find their division
+                                JSONObject office = offices.getJSONObject(i);
+                                String divisionId = office.getString("divisionId");
+                                JSONObject divisionInfo = divisions.getJSONObject(divisionId);
 
-                            for (int i = 0 ; i < divNames.length(); i++) {
-                                String name = divNames.optString(i);
-                                JSONObject value = divisions.getJSONObject(name);
-                                divValues.put(value);
+//                                // Associate Official with their Office and Division
+                                JSONArray officialIndices = office.getJSONArray("officialIndices");
+                                for (int j = 0; j < officialIndices.length(); j++) {
+                                    Integer index = officialIndices.getInt(j);
+                                    JSONObject official = officials.getJSONObject(index);
+                                    official.put("division", divisionInfo.getString("name"));
+                                    official.put("office", office.getString("name"));
+                                }
                             }
 
-                            Log.d("arrayNames", "" + divValues);
-
-                            // result = (JSONObject)response.getJSONArray("results").get(0);
-                            // formattedAddress = (String)result.get("formatted_address");
+                            Log.d("officials", "" + officials);
                         }
                         catch (JSONException e) {
                             Log.d("errorParse", "Error Parsing JSON Response");
                             e.printStackTrace();
                         }
-
-                        // Log.d("successParse", "Formatted Address: " + formattedAddress);
-                        // searchAddress.setText("" + formattedAddress);
                     }
                 }, new Response.ErrorListener() {
                     @Override
