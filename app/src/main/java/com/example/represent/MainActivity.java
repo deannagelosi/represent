@@ -4,7 +4,10 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import android.os.Bundle;
@@ -20,14 +23,20 @@ import org.json.JSONObject;
 import android.Manifest;
 import android.view.View;
 
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.EditText;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
 
     // Declare widgets
     ImageButton getGPS;
+    Button search;
     EditText searchAddress;
 
     @Override
@@ -36,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getGPS = findViewById(R.id.getGPS);
+        search = findViewById(R.id.search);
         searchAddress = findViewById(R.id.searchAddress);
 
         // Start Listening for GPS coordinates
@@ -73,6 +83,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 fetchLocation(mLocationManager);
+            }
+        });
+
+        // Add a click event for the button (execute the convert method when clicked)
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fetchCivicInfo();
             }
         });
     }
@@ -141,5 +159,68 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return latLng;
+    }
+
+    private void fetchCivicInfo() {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String address = "49 Oakwood St San Francisco CA 94110&";
+        String offices = "includeOffices=true&";
+        String levels = "levels=country&";
+        String roles = "roles=legislatorLowerBody&roles=legislatorUpperBody&";
+        String API_KEY = "key=AIzaSyBRmaiRao6Mwxqr5Luxvnpc5wuTewDl7J4";
+        String url = "https://www.googleapis.com/civicinfo/v2/representatives?address=" +  address + offices + levels + roles + API_KEY;
+
+        // Request a json response from the API endpoint
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        // Declare variables
+                        // JSONArray arrayResults = new JSONArray();
+                        // String formattedAddress = new String();
+                        JSONObject divisions;
+                        JSONArray offices;
+                        JSONArray officials ;
+
+
+                        try {
+                            divisions = response.getJSONObject("divisions");
+                            offices = response.getJSONArray("offices");
+                            officials = response.getJSONArray("officials");
+
+                            JSONArray divNames = divisions.names();
+                            JSONArray divValues = new JSONArray();
+
+                            for (int i = 0 ; i < divNames.length(); i++) {
+                                String name = divNames.optString(i);
+                                JSONObject value = divisions.getJSONObject(name);
+                                divValues.put(value);
+                            }
+
+                            Log.d("arrayNames", "" + divValues);
+
+                            // result = (JSONObject)response.getJSONArray("results").get(0);
+                            // formattedAddress = (String)result.get("formatted_address");
+                        }
+                        catch (JSONException e) {
+                            Log.d("errorParse", "Error Parsing JSON Response");
+                            e.printStackTrace();
+                        }
+
+                        // Log.d("successParse", "Formatted Address: " + formattedAddress);
+                        // searchAddress.setText("" + formattedAddress);
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("error", "Error: " + error);
+                        searchAddress.setText("Error Converting Address");
+                    }
+                });
+
+        // Add the API request to the RequestQueue.
+        queue.add(jsonObjectRequest);
     }
 }
