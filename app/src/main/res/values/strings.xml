@@ -3,4 +3,8 @@
     <string name="represent_">Represent!</string>
     <string name="find_your_r">Find your representatives</string>
     <string name="enter_your_">Search an Address</string>
+    <string name="your_distri">Your district representative is [Person A] who is a member of the [D/R/I] party.</string>
+    <string name="your_state_1">Your state representative is [Person A] who is a member of the [D/R/I] party.</string>
+    <string name="your_state_2">Your state representative is [Person A] who is a member of the [D/R/I] party.\n\n</string>
+    <string name="black_lives">Black Lives Matter</string>
 </resources>
