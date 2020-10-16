@@ -90,7 +90,8 @@ public class MainActivity extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fetchCivicInfo();
+                String currentAddress = searchAddress.getText().toString();
+                fetchCivicInfo(currentAddress);
             }
         });
     }
@@ -161,14 +162,13 @@ public class MainActivity extends AppCompatActivity {
         return latLng;
     }
 
-    private void fetchCivicInfo() {
+    private void fetchCivicInfo(String currentAddress) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String address = "49 Oakwood St San Francisco CA 94110&";
         String offices = "includeOffices=true&";
         String levels = "levels=country&";
         String roles = "roles=legislatorLowerBody&roles=legislatorUpperBody&";
         String API_KEY = "key=AIzaSyBRmaiRao6Mwxqr5Luxvnpc5wuTewDl7J4";
-        String url = "https://www.googleapis.com/civicinfo/v2/representatives?address=" +  address + offices + levels + roles + API_KEY;
+        String url = "https://www.googleapis.com/civicinfo/v2/representatives?address=" + currentAddress + offices + levels + roles + API_KEY;
 
         // Request a json response from the API endpoint
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
