@@ -118,11 +118,11 @@ public class MainActivity extends AppCompatActivity {
                         // Declare variables
                         // JSONArray arrayResults = new JSONArray();
                         JSONObject result;
-                        String formattedAddress = new String();
+                        String formattedAddress = "";
 
                         try {
                             result = (JSONObject)response.getJSONArray("results").get(0);
-                            formattedAddress = (String)result.get("formatted_address");
+                            formattedAddress = result.getString("formatted_address");
                         }
                         catch (JSONException e) {
                             Log.d("errorParse", "Error Parsing JSON Response");

@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/rectangle_5" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/image1"
         android:layout_width="88dp"
         android:layout_height="90dp"
         app:layout_constraintBottom_toBottomOf="@+id/rectangle_3"
@@ -79,7 +79,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/image2"
         android:layout_width="88dp"
         android:layout_height="90dp"
         app:layout_constraintBottom_toBottomOf="@+id/rectangle_4"
@@ -91,7 +91,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/image3"
         android:layout_width="88dp"
         android:layout_height="90dp"
         app:layout_constraintBottom_toBottomOf="@+id/rectangle_5"
@@ -102,7 +102,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/your_distri"
+        android:id="@+id/repDescription1"
         android:layout_width="224dp"
         android:layout_height="53dp"
         android:layout_alignParentLeft="true"
@@ -167,7 +167,7 @@
         app:layout_constraintVertical_bias="0.872" />
 
     <TextView
-        android:id="@+id/your_state_1"
+        android:id="@+id/repDescription2"
         android:layout_width="224dp"
         android:layout_height="53dp"
         android:layout_alignParentLeft="true"
@@ -185,7 +185,7 @@
 
     <!-- Black Lives Matter -->
     <TextView
-        android:id="@+id/your_state_2"
+        android:id="@+id/repDescription3"
         android:layout_width="224dp"
         android:layout_height="53dp"
         android:layout_alignParentLeft="true"
