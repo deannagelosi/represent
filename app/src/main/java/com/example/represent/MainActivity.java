@@ -1,5 +1,6 @@
 package com.example.represent;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -48,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
         search = findViewById(R.id.search);
         searchAddress = findViewById(R.id.searchAddress);
 
+        Log.d("getGPS", "" + getGPS);
+
+
         // Start Listening for GPS coordinates
         // 1. Check the app has been granted the right permissions by the user
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -94,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 fetchCivicInfo(currentAddress);
             }
         });
+
     }
 
     private void fetchLocation(LocationManager mLocationManager) {
@@ -205,6 +210,9 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                             Log.d("officials", "" + officials);
+                            Intent intent = new Intent(MainActivity.this, Representatives.class);
+                            intent.putExtra("officials", officials.toString());
+                            startActivity(intent);
                         }
                         catch (JSONException e) {
                             Log.d("errorParse", "Error Parsing JSON Response");
