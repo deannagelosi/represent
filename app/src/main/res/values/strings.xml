@@ -7,4 +7,9 @@
     <string name="your_state_1">Your state representative is [Person A] who is a member of the [D/R/I] party.</string>
     <string name="your_state_2">Your state representative is [Person A] who is a member of the [D/R/I] party.\n\n</string>
     <string name="black_lives">Black Lives Matter</string>
+    <string name="bio">Your [district/state] representative is [Person A] who is a member of the [D/R/I] party.\n\n</string>
+    <string name="website">www.theirwebsite.gov</string>
+    <string name="phone">(888) 123-4567</string>
+    <string name="twitter">their_name</string>
+    <string name="youtube">Follow on YouTube</string>
 </resources>
