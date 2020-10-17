@@ -19,9 +19,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import android.widget.Button;
+
 
 public class Representatives extends AppCompatActivity {
 
@@ -33,6 +34,9 @@ public class Representatives extends AppCompatActivity {
     ImageView image1;
     ImageView image2;
     ImageView image3;
+    Button moreInfo1;
+    Button moreInfo2;
+    Button moreInfo3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +50,11 @@ public class Representatives extends AppCompatActivity {
         image1 = findViewById(R.id.image1);
         image2 = findViewById(R.id.image2);
         image3 = findViewById(R.id.image3);
+        moreInfo1 = findViewById(R.id.moreInfo1);
+        moreInfo2 = findViewById(R.id.moreInfo2);
+        moreInfo3 = findViewById(R.id.moreInfo3);
 
-        String officialsString = getIntent().getExtras().getString("officials");
+        final String officialsString = getIntent().getExtras().getString("officials");
         Log.d("Rep activity: officials", officialsString);
 
         JSONArray officials;
@@ -88,6 +95,36 @@ public class Representatives extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        moreInfo1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Representatives.this, Profile.class);
+                intent.putExtra("officials", officialsString);
+                intent.putExtra("index", 0);
+                startActivity(intent);
+            }
+        });
+
+        moreInfo2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Representatives.this, Profile.class);
+                intent.putExtra("officials", officialsString);
+                intent.putExtra("index", 1);
+                startActivity(intent);
+            }
+        });
+
+        moreInfo3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Representatives.this, Profile.class);
+                intent.putExtra("officials", officialsString);
+                intent.putExtra("index", 2);
+                startActivity(intent);
+            }
+        });
     }
 
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
@@ -124,6 +161,7 @@ public class Representatives extends AppCompatActivity {
                 bmImage.setImageBitmap(result);
             }
         }
+
     }
 
 
