@@ -29,6 +29,7 @@ public class Profile extends AppCompatActivity {
     // Declare widgets
     ImageButton back;
     ImageView profileImage;
+    TextView fullName;
     TextView bio;
     TextView websiteLink;
     TextView phoneNumber;
@@ -42,6 +43,7 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         back = findViewById(R.id.back);
+        fullName = findViewById(R.id.full_name);
         bio = findViewById(R.id.bio);
         profileImage = findViewById(R.id.profile_image);
         websiteLink = findViewById(R.id.website_url);
@@ -63,6 +65,7 @@ public class Profile extends AppCompatActivity {
         });
 
         String imageUrl = "";
+        String name = "";
         String repBio = "";
         String websiteUrl = "";
         String phoneNum = "";
@@ -76,7 +79,7 @@ public class Profile extends AppCompatActivity {
             JSONObject official = officials.getJSONObject(index);
 
             String office = official.getString("office");
-            String name = official.getString("name");
+            name = official.getString("name");
             String party = official.getString("party");
 
             imageUrl = official.optString("photoUrl");
@@ -104,6 +107,7 @@ public class Profile extends AppCompatActivity {
 
         // Set the Profile UI values
         new DownloadImageTask(profileImage).execute(imageUrl);
+        fullName.setText(name);
         bio.setText(repBio);
         websiteLink.setText(websiteUrl);
 
@@ -119,7 +123,7 @@ public class Profile extends AppCompatActivity {
                 startActivity(call);
             }
         });
-        
+
         setSocialMedia(facebookFollow, Uri.parse("http://facebook.com/" + facebookId));
         setSocialMedia(twitterFollow, Uri.parse("http://twitter.com/" + twitterId));
         setSocialMedia(youtubeFollow, Uri.parse("http://youtube.com/" + youtubeId));

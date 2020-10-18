@@ -145,14 +145,16 @@
         android:id="@+id/full_name"
         android:layout_width="261dp"
         android:layout_height="30dp"
-        android:fontFamily="@font/roboto_regular"
-        android:textStyle="bold"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:fontFamily="@font/roboto_regular"
         android:gravity="center_horizontal|top"
         android:text="@string/full_name"
         android:textAppearance="@style/full_name"
-        tools:layout_editor_absoluteX="75dp"
-        tools:layout_editor_absoluteY="282dp" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/bio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
