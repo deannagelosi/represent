@@ -6,12 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/background"
-    >
+    android:background="@drawable/background" >
 
-    <!-- Rectangle 1 -->
-
-    <!-- blm-fist -->
     <View
         android:id="@+id/rectangle_1"
         android:layout_width="360dp"
@@ -40,11 +36,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.438" />
 
-    <!-- Represent! -->
-
-    <!-- Find your representatives -->
-
-    <!-- Enter your address -->
     <TextView
         android:id="@+id/represent_"
         android:layout_width="196dp"
@@ -78,8 +69,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.526" />
-
-    <!-- gps 1 -->
 
     <TextView
         android:id="@+id/enter_your_"

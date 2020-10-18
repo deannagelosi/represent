@@ -1,7 +1,6 @@
 package com.example.represent;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,11 +12,9 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +56,7 @@ public class Representatives extends AppCompatActivity {
         moreInfo3 = findViewById(R.id.moreInfo3);
 
         final String officialsString = getIntent().getExtras().getString("officials");
-        Log.d("Rep activity: officials", officialsString);
+        // Log.d("Rep activity: officials", officialsString);
 
         JSONArray officials;
         List<String> imageURL = new ArrayList<String>();
@@ -69,7 +66,7 @@ public class Representatives extends AppCompatActivity {
         try {
             officials = new JSONArray(officialsString);
             for (int i = 0; i < officials.length(); i++) {
-                Log.d("each official", "" + officials.getJSONObject(i));
+                // Log.d("each official", "" + officials.getJSONObject(i));
                 JSONObject official = officials.getJSONObject(i);
 
                 String office = official.getString("office");
@@ -78,7 +75,6 @@ public class Representatives extends AppCompatActivity {
                 String division = official.getString("division");
 
                 imageURL.add(official.optString("photoUrl"));
-//                repBio.add("Your " + office + " is " + name + " who is a member of the " + party + ".");
                 repBio.add(name + " (" + party + ")");
                 divs.add(division);
             }
@@ -148,7 +144,7 @@ public class Representatives extends AppCompatActivity {
         protected Bitmap doInBackground(String... urls) {
             String urldisplay = urls[0];
             Bitmap mIcon11 = null;
-            Log.d("urldisplay", urldisplay);
+            // Log.d("urldisplay", urldisplay);
             try {
                 InputStream in = new java.net.URL(urldisplay).openStream();
                 mIcon11 = BitmapFactory.decodeStream(in);
@@ -160,6 +156,7 @@ public class Representatives extends AppCompatActivity {
         }
 
         protected void onPostExecute(Bitmap result) {
+            // Add a placeholder image if no image found
             if (result == null) {
                 Drawable placeholder = getApplicationContext().getDrawable(R.drawable.placeholder);
                 bmImage.setImageDrawable(placeholder);

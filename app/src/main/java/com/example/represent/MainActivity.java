@@ -7,7 +7,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.util.Log;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -23,16 +22,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.Manifest;
 import android.view.View;
-
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,22 +45,18 @@ public class MainActivity extends AppCompatActivity {
         random = findViewById(R.id.random);
         searchAddress = findViewById(R.id.searchAddress);
 
-        Log.d("getGPS", "" + getGPS);
-
-//        final int ACCESS_FINE_LOCATION_CODE = 7;
-//        final int ACCESS_COARSE_LOCATION_CODE = 8;
-//        final int TAG_CODE_PERMISSION_LOCATION = 1;
+        // Log.d("getGPS", "" + getGPS);
 
         // Start Listening for GPS coordinates
-        // 1. Check the app has been granted the right permissions by the user
+        /// 1. Check the app has been granted the right permissions by the user
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Log.d("permission-check", "Invalid permissions to perform GPS check");
+            // Log.d("permission-check", "Invalid permissions to perform GPS check");
             // Request permissions
             ActivityCompat.requestPermissions(this, new String[] {
                             Manifest.permission.ACCESS_FINE_LOCATION,
                             Manifest.permission.ACCESS_COARSE_LOCATION }, 1);
         }
-        // 2. Create Listener for new GPS position
+        /// 2. Create Listener for new GPS position
         LocationListener mLocationListener = new LocationListener() {
             @Override
             public void onLocationChanged(final Location location) {
@@ -75,11 +64,11 @@ public class MainActivity extends AppCompatActivity {
                 double longitude=0;
                 latitude = location.getLatitude();
                 longitude = location.getLongitude();
-                Log.d("latlon", "GPS Changed: " + latitude + ", " + longitude);
+                // Log.d("latlon", "GPS Changed: " + latitude + ", " + longitude);
             }
         };
 
-        // 3. Start the Listener
+        /// 3. Start the Listener
         final LocationManager mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000,
                 1, mLocationListener);
@@ -98,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String currentAddress = searchAddress.getText().toString();
                 if (currentAddress.equals("")) {
-                    // To Do: Toast saying please enter an address
                     Toast.makeText(MainActivity.this, "Enter an Address", Toast.LENGTH_SHORT).show();
                 } else {
                     fetchCivicInfo(currentAddress);
@@ -129,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         // Declare variables
-                        // JSONArray arrayResults = new JSONArray();
                         JSONObject result;
                         String formattedAddress = "";
 
@@ -138,17 +125,17 @@ public class MainActivity extends AppCompatActivity {
                             formattedAddress = result.getString("formatted_address");
                         }
                         catch (JSONException e) {
-                            Log.d("errorParse", "Error Parsing JSON Response");
+                            // Log.d("errorParse", "Error Parsing JSON Response");
                             e.printStackTrace();
                         }
 
-                        Log.d("successParse", "Formatted Address: " + formattedAddress);
+                        // Log.d("successParse", "Formatted Address: " + formattedAddress);
                         searchAddress.setText("" + formattedAddress);
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d("error", "Error: " + error);
+                        // Log.d("error", "Error: " + error);
                         searchAddress.setText("Error Converting Address");
                     }
                 });
@@ -162,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Check Permissions
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Log.d("permission-check", "Invalid permissions to perform GPS check");
+            // Log.d("permission-check", "Invalid permissions to perform GPS check");
             // Request Permission
              ActivityCompat.requestPermissions(this, new String[] {
                             Manifest.permission.ACCESS_FINE_LOCATION,
@@ -171,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
             // Get current gps cords
             Location currentGPS = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             latLng = currentGPS.getLatitude() + "," + currentGPS.getLongitude();
-            Log.d("location", "Current GPS: " + latLng);
+            // Log.d("location", "Current GPS: " + latLng);
         }
 
         return latLng;
@@ -193,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
         String roles = "roles=legislatorLowerBody&roles=legislatorUpperBody&";
         String API_KEY = "key=AIzaSyBRmaiRao6Mwxqr5Luxvnpc5wuTewDl7J4";
         String url = "https://www.googleapis.com/civicinfo/v2/representatives?address=" + address + offices + levels + roles + API_KEY;
-        Log.d("search api url: ", url);
+        // Log.d("search api url: ", url);
 
         // Request a json response from the API endpoint
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
@@ -202,7 +189,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         // Declare variables
-                        // String formattedAddress = new String();
                         JSONArray offices;
                         JSONObject divisions;
                         JSONArray officials ;
@@ -228,12 +214,12 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             }
 
-                            Log.d("officials", "" + officials);
+                            // Log.d("officials", "" + officials);
 
                             // Check if there are three reps
                             if (officials.length() != 3 && currentAddress.equals("random")) {
                                 // Random address only has 2 reps
-                                Log.d("Error", "Response had " + officials.length() + " officials");
+                                // Log.d("Error", "Response had " + officials.length() + " officials");
                                 fetchCivicInfo("random"); // Or, pull from list of zips
                             } else if (officials.length() != 3) {
                                 // User entered address ony has 2 reps
@@ -247,17 +233,17 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                         catch (JSONException e) {
-                            Log.d("errorParse", "Error Parsing JSON Response");
+                            // Log.d("errorParse", "Error Parsing JSON Response");
                             e.printStackTrace();
                         }
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d("error", "Error" + error);
+                        // Log.d("error", "Error" + error);
                         if (currentAddress.equals("random")) {
                             // Bad random zipcode. Try one of the preset zips
-                            Log.d("Error", "Bad random zip");
+                            // Log.d("Error", "Bad random zip");
                             fetchCivicInfo("random"); // Or, pull from list of zips
                         } else {
                             // User entered bad address
@@ -274,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
         int min = 10000;
         int max = 99950;
         int newZip = (int)(Math.random()*(max-min+1)+min);
-        Log.d("new zip", "" + newZip);
+        // Log.d("new zip", "" + newZip);
         return String.valueOf(newZip);
     }
 

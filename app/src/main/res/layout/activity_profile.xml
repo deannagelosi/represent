@@ -7,8 +7,6 @@
     tools:context=".Profile"
     android:background="@drawable/background">
 
-    <!-- Rectangle 3 -->
-
     <View
         android:id="@+id/rectangle_2"
         android:layout_width="360dp"

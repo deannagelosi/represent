@@ -1,11 +1,9 @@
 package com.example.represent;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -17,11 +15,9 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.InputStream;
 
 public class Profile extends AppCompatActivity {
@@ -32,8 +28,6 @@ public class Profile extends AppCompatActivity {
     TextView fullName;
     TextView bio;
     TextView websiteLink;
-//    TextView officeTitle;
-//    TextView divisionTitle;
     TextView phoneNumber;
     ImageButton twitterFollow;
     ImageButton facebookFollow;
@@ -53,8 +47,6 @@ public class Profile extends AppCompatActivity {
         twitterFollow = findViewById(R.id.twitter_icon);
         facebookFollow = findViewById(R.id.facebook_icon);
         youtubeFollow = findViewById(R.id.youtube_icon);
-//        officeTitle = findViewById(R.id.office_title);
-//        divisionTitle = findViewById(R.id.division_title);
 
         final String officialsString = getIntent().getExtras().getString("officials");
         final Integer index = getIntent().getExtras().getInt("index");
@@ -81,7 +73,7 @@ public class Profile extends AppCompatActivity {
 
         try {
             JSONArray officials = new JSONArray(officialsString);
-            Log.d( "official profile", "" + officials.getJSONObject(index));
+            // Log.d( "official profile", "" + officials.getJSONObject(index));
             JSONObject official = officials.getJSONObject(index);
 
             office = official.getString("office");
@@ -90,7 +82,6 @@ public class Profile extends AppCompatActivity {
             String party = official.getString("party");
 
             imageUrl = official.optString("photoUrl");
-//            repBio = "Your " + office + " is " + name + " who is a member of the " + party + ".";
             repBio = name + " (" + party + ") is a " + office + " from " + division + ".";
             websiteUrl = official.getJSONArray("urls").getString(0);
             phoneNum = official.getJSONArray("phones").getString(0);
@@ -116,8 +107,6 @@ public class Profile extends AppCompatActivity {
         // Set the Profile UI values
         new DownloadImageTask(profileImage).execute(imageUrl);
         fullName.setText(name);
-//        officeTitle.setText(office);
-//        divisionTitle.setText(division);
         bio.setText(repBio);
         websiteLink.setText(websiteUrl);
 
@@ -159,7 +148,7 @@ public class Profile extends AppCompatActivity {
         protected Bitmap doInBackground(String... urls) {
             String urldisplay = urls[0];
             Bitmap mIcon11 = null;
-            Log.d("urldisplay", urldisplay);
+            // Log.d("urldisplay", urldisplay);
             try {
                 InputStream in = new java.net.URL(urldisplay).openStream();
                 mIcon11 = BitmapFactory.decodeStream(in);
