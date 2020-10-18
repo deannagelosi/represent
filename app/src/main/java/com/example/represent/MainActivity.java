@@ -229,9 +229,22 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                             Log.d("officials", "" + officials);
-                            Intent intent = new Intent(MainActivity.this, Representatives.class);
-                            intent.putExtra("officials", officials.toString());
-                            startActivity(intent);
+
+                            // Check if there are three reps
+                            if (officials.length() != 3 && currentAddress.equals("random")) {
+                                // Random address only has 2 reps
+                                Log.d("Error", "Response had " + officials.length() + " officials");
+                                fetchCivicInfo("random"); // Or, pull from list of zips
+                            } else if (officials.length() != 3) {
+                                // User entered address ony has 2 reps
+                                Toast.makeText(MainActivity.this, "Enter Full Address", Toast.LENGTH_SHORT).show();
+                            } else {
+                                // Address has 3 reps
+                                Intent intent = new Intent(MainActivity.this, Representatives.class);
+                                intent.putExtra("officials", officials.toString());
+                                startActivity(intent);
+                            }
+
                         }
                         catch (JSONException e) {
                             Log.d("errorParse", "Error Parsing JSON Response");
