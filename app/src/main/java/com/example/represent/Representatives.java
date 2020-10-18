@@ -72,7 +72,7 @@ public class Representatives extends AppCompatActivity {
                 String party = official.getString("party");
 
                 imageURL.add(official.optString("photoUrl"));
-                repBio.add("Your " + office + " is " + name + " who is a member of the " + party + " party.");
+                repBio.add("Your " + office + " is " + name + " who is a member of the " + party + ".");
 
             }
         } catch (JSONException e) {
@@ -138,18 +138,14 @@ public class Representatives extends AppCompatActivity {
         protected Bitmap doInBackground(String... urls) {
             String urldisplay = urls[0];
             Bitmap mIcon11 = null;
-
             Log.d("urldisplay", urldisplay);
-            if (urldisplay != null) {
-                try {
-                    InputStream in = new java.net.URL(urldisplay).openStream();
-                    mIcon11 = BitmapFactory.decodeStream(in);
-                } catch (Exception e) {
-                    Log.e("Error", e.getMessage());
-                    e.printStackTrace();
-                }
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
             }
-
             return mIcon11;
         }
 

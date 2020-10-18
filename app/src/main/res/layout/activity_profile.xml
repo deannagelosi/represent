@@ -34,7 +34,6 @@
         app:layout_constraintVertical_bias="0.192"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <!-- Your [district/state] representative is [Person A] who is a member of the [D/R/I] party. -->
     <TextView
         android:id="@+id/bio"
         android:layout_width="301dp"
@@ -43,143 +42,90 @@
         android:layout_alignParentTop="true"
         android:fontFamily="@font/roboto_regular"
         android:gravity="top"
-        android:text="@string/your_distri"
+        android:text="@string/bio"
         android:textAppearance="@style/bio"
         app:layout_constraintBottom_toBottomOf="@+id/rectangle_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_image"
-        app:layout_constraintVertical_bias="0.073" />
+        app:layout_constraintVertical_bias="0.238" />
 
-    <!-- link -->
-
-    <!-- phone -->
-
-    <ImageView
-        android:id="@+id/url_link"
-        android:layout_width="37dp"
-        android:layout_height="37dp"
+    <TextView
+        android:id="@+id/website_url"
+        android:layout_width="295dp"
+        android:layout_height="34dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/link"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="top"
+        android:text="@string/website"
+        android:textAppearance="@style/website"
+        android:autoLink="web"
+        android:linksClickable="true"
+        android:textColorLink="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/rectangle_2"
-        app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
-        app:layout_constraintHorizontal_bias="0.092"
-        app:layout_constraintStart_toStartOf="@+id/rectangle_2"
-        app:layout_constraintTop_toTopOf="@+id/rectangle_2"
-        app:layout_constraintVertical_bias="0.416" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_image"
+        app:layout_constraintVertical_bias="0.439" />
 
-    <!-- twitter -->
-
-    <ImageView
-        android:id="@+id/phone"
-        android:layout_width="37dp"
-        android:layout_height="37dp"
+    <TextView
+        android:id="@+id/phone_number"
+        android:layout_width="295dp"
+        android:layout_height="34dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/phone_call"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="top"
+        android:text="@string/phone"
+        android:textAppearance="@style/phone"
+        android:textStyle=""
         app:layout_constraintBottom_toBottomOf="@+id/rectangle_2"
-        app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
-        app:layout_constraintHorizontal_bias="0.092"
-        app:layout_constraintStart_toStartOf="@+id/rectangle_2"
-        app:layout_constraintTop_toBottomOf="@+id/url_link"
-        app:layout_constraintVertical_bias="0.145" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_image"
+        app:layout_constraintVertical_bias="0.57" />
 
-    <!-- youtube(1) 1 -->
-    <ImageView
+    <ImageButton
         android:id="@+id/twitter_icon"
         android:layout_width="39dp"
         android:layout_height="31dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginBottom="36dp"
         android:background="@drawable/twitter"
         app:layout_constraintBottom_toBottomOf="@+id/rectangle_2"
         app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
-        app:layout_constraintHorizontal_bias="0.093"
-        app:layout_constraintStart_toStartOf="@+id/rectangle_2"
-        app:layout_constraintTop_toBottomOf="@+id/phone"
-        app:layout_constraintVertical_bias="0.212" />
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="@+id/rectangle_2" />
 
-    <RelativeLayout
+    <ImageButton
         android:id="@+id/youtube_icon"
         android:layout_width="48dp"
         android:layout_height="31dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginBottom="36dp"
         android:background="@drawable/youtube"
         app:layout_constraintBottom_toBottomOf="@+id/rectangle_2"
         app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
-        app:layout_constraintHorizontal_bias="0.096"
-        app:layout_constraintStart_toStartOf="@+id/rectangle_2"
-        app:layout_constraintTop_toBottomOf="@+id/twitter_icon"
-        app:layout_constraintVertical_bias="0.377" />
+        app:layout_constraintHorizontal_bias="0.762"
+        app:layout_constraintStart_toStartOf="@+id/rectangle_2" />
 
-    <!-- www.theirwebsite.gov -->
-
-    <!-- phone -->
-
-    <!-- @their_name -->
-
-    <TextView
-        android:id="@+id/website"
-        android:layout_width="190dp"
-        android:layout_height="25dp"
+    <ImageButton
+        android:id="@+id/facebook_icon"
+        android:layout_width="40dp"
+        android:layout_height="39dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="28dp"
-        android:gravity="top"
-        android:text="@string/website"
-        android:textAppearance="@style/website"
-        app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
-        app:layout_constraintHorizontal_bias="0.446"
-        app:layout_constraintStart_toEndOf="@+id/url_link"
-        app:layout_constraintTop_toBottomOf="@+id/bio" />
-
-    <TextView
-        android:id="@+id/phone_number"
-        android:layout_width="135dp"
-        android:layout_height="25dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="44dp"
-        android:gravity="top"
-        android:text="@string/phone_number"
-        android:textAppearance="@style/phone_number"
-        app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
-        app:layout_constraintHorizontal_bias="0.291"
-        app:layout_constraintStart_toEndOf="@+id/phone"
-        app:layout_constraintTop_toBottomOf="@+id/website" />
-
-    <TextView
-        android:id="@+id/twitter"
-        android:layout_width="135dp"
-        android:layout_height="25dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="40dp"
-        android:gravity="top"
-        android:text="@string/twitter"
-        android:textAppearance="@style/twitter"
-        app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
-        app:layout_constraintHorizontal_bias="0.282"
-        app:layout_constraintStart_toEndOf="@+id/twitter_icon"
-        app:layout_constraintTop_toBottomOf="@+id/phone" />
-
-    <TextView
-        android:id="@+id/youtube"
-        android:layout_width="173dp"
-        android:layout_height="25dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:gravity="top"
-        android:text="@string/youtube"
-        android:textAppearance="@style/youtube"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/facebook"
         app:layout_constraintBottom_toBottomOf="@+id/rectangle_2"
         app:layout_constraintEnd_toEndOf="@+id/rectangle_2"
-        app:layout_constraintHorizontal_bias="0.321"
-        app:layout_constraintStart_toEndOf="@+id/youtube_icon"
-        app:layout_constraintTop_toBottomOf="@+id/twitter"
-        app:layout_constraintVertical_bias="0.392" />
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="@+id/rectangle_2" />
 
     <ImageButton
         android:id="@+id/back"
@@ -194,5 +140,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
+
+    <TextView
+        android:id="@+id/full_name"
+        android:layout_width="261dp"
+        android:layout_height="30dp"
+        android:fontFamily="@font/roboto_regular"
+        android:textStyle="bold"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center_horizontal|top"
+        android:text="@string/full_name"
+        android:textAppearance="@style/full_name"
+        tools:layout_editor_absoluteX="75dp"
+        tools:layout_editor_absoluteY="282dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
