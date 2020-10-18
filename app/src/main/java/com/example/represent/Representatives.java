@@ -31,6 +31,8 @@ public class Representatives extends AppCompatActivity {
     TextView repDescription1;
     TextView repDescription2;
     TextView repDescription3;
+    TextView divisionSenator;
+    TextView divisionDistrict;
     ImageView image1;
     ImageView image2;
     ImageView image3;
@@ -47,6 +49,8 @@ public class Representatives extends AppCompatActivity {
         repDescription1 = findViewById(R.id.repDescription1);
         repDescription2 = findViewById(R.id.repDescription2);
         repDescription3 = findViewById(R.id.repDescription3);
+        divisionSenator = findViewById(R.id.division_senator);
+        divisionDistrict = findViewById(R.id.division_district);
         image1 = findViewById(R.id.image1);
         image2 = findViewById(R.id.image2);
         image3 = findViewById(R.id.image3);
@@ -60,6 +64,7 @@ public class Representatives extends AppCompatActivity {
         JSONArray officials;
         List<String> imageURL = new ArrayList<String>();
         List<String> repBio = new ArrayList<String>();
+        List<String> divs = new ArrayList<String>();
 
         try {
             officials = new JSONArray(officialsString);
@@ -70,14 +75,19 @@ public class Representatives extends AppCompatActivity {
                 String office = official.getString("office");
                 String name = official.getString("name");
                 String party = official.getString("party");
+                String division = official.getString("division");
 
                 imageURL.add(official.optString("photoUrl"));
-                repBio.add("Your " + office + " is " + name + " who is a member of the " + party + ".");
-
+//                repBio.add("Your " + office + " is " + name + " who is a member of the " + party + ".");
+                repBio.add(name + " (" + party + ")");
+                divs.add(division);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        divisionSenator.setText(divs.get(0));
+        divisionDistrict.setText(divs.get(2));
 
         repDescription1.setText(repBio.get(0));
         repDescription2.setText(repBio.get(1));

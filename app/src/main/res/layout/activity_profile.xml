@@ -48,27 +48,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_image"
-        app:layout_constraintVertical_bias="0.238" />
+        app:layout_constraintVertical_bias="0.184" />
 
     <TextView
         android:id="@+id/website_url"
-        android:layout_width="295dp"
-        android:layout_height="34dp"
+        android:layout_width="296dp"
+        android:layout_height="61dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:autoLink="web"
         android:fontFamily="@font/roboto_regular"
         android:gravity="top"
+        android:linksClickable="true"
         android:text="@string/website"
         android:textAppearance="@style/website"
-        android:autoLink="web"
-        android:linksClickable="true"
         android:textColorLink="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/rectangle_2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_image"
-        app:layout_constraintVertical_bias="0.439" />
+        app:layout_constraintTop_toBottomOf="@+id/phone_number"
+        app:layout_constraintVertical_bias="0.163" />
 
     <TextView
         android:id="@+id/phone_number"
@@ -83,10 +83,10 @@
         android:textStyle=""
         app:layout_constraintBottom_toBottomOf="@+id/rectangle_2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_image"
-        app:layout_constraintVertical_bias="0.57" />
+        app:layout_constraintTop_toBottomOf="@+id/bio"
+        app:layout_constraintVertical_bias="0.082" />
 
     <ImageButton
         android:id="@+id/twitter_icon"
@@ -147,12 +147,12 @@
         android:layout_height="30dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/roboto_regular"
         android:gravity="center_horizontal|top"
         android:text="@string/full_name"
         android:textAppearance="@style/full_name"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/bio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_image" />

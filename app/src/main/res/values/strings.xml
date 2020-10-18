@@ -13,5 +13,9 @@
     <string name="twitter">their_name</string>
     <string name="youtube">Follow on YouTube</string>
     <string name="facebook">Find Me on Facebook</string>
+    <string name="office_senator">U.S. Senator</string>
+    <string name="office_district">U.S. Representative</string>
+    <string name="division_district">Congressional District</string>
+    <string name="division_senator">State</string>
     <string name="full_name">Full Name</string>
 </resources>

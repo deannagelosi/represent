@@ -10,50 +10,53 @@
     <!-- Rectangle 3 -->
 
     <!-- Rectangle 4 -->
+
+    <!-- Rectangle 5 -->
+
+
     <View
         android:id="@+id/rectangle_3"
-        android:layout_width="360dp"
-        android:layout_height="134dp"
+        android:layout_width="369dp"
+        android:layout_height="330dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:background="@drawable/rectangle_3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.221" />
+        app:layout_constraintVertical_bias="0.172" />
 
-    <View
-        android:id="@+id/rectangle_4"
-        android:layout_width="360dp"
-        android:layout_height="134dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/rectangle_4"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rectangle_3"
-        app:layout_constraintVertical_bias="0.092" />
-
-    <!-- Rectangle 5 -->
     <View
         android:id="@+id/rectangle_5"
-        android:layout_width="360dp"
-        android:layout_height="134dp"
+        android:layout_width="365dp"
+        android:layout_height="212dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
         android:background="@drawable/rectangle_5"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.565"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rectangle_4"
-        app:layout_constraintVertical_bias="0.201" />
+        app:layout_constraintTop_toBottomOf="@+id/rectangle_3" />
 
-    <!-- Rectangle 6 -->
+    <TextView
+        android:id="@+id/office_district"
+        android:layout_width="261dp"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center_horizontal|top"
+        android:text="@string/office_district"
+        android:textAppearance="@style/office_district"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/bio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rectangle_5" />
+
     <View
         android:id="@+id/rectangle_6"
         android:layout_width="361dp"
@@ -64,41 +67,35 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rectangle_5" />
+        app:layout_constraintTop_toBottomOf="@+id/rectangle_5"
+        app:layout_constraintVertical_bias="0.727" />
 
-    <ImageView
-        android:id="@+id/image1"
-        android:layout_width="88dp"
-        android:layout_height="90dp"
-        app:layout_constraintBottom_toBottomOf="@+id/rectangle_3"
-        app:layout_constraintEnd_toEndOf="@+id/rectangle_3"
-        app:layout_constraintHorizontal_bias="0.073"
-        app:layout_constraintStart_toStartOf="@+id/rectangle_3"
-        app:layout_constraintTop_toTopOf="@+id/rectangle_3"
-        app:layout_constraintVertical_bias="0.409"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/image2"
-        android:layout_width="88dp"
-        android:layout_height="90dp"
-        app:layout_constraintBottom_toBottomOf="@+id/rectangle_4"
-        app:layout_constraintEnd_toEndOf="@+id/rectangle_4"
-        app:layout_constraintHorizontal_bias="0.073"
-        app:layout_constraintStart_toStartOf="@+id/rectangle_4"
-        app:layout_constraintTop_toTopOf="@+id/rectangle_4"
-        app:layout_constraintVertical_bias="0.522"
-        tools:srcCompat="@tools:sample/avatars" />
+    <TextView
+        android:id="@+id/office_senator"
+        android:layout_width="261dp"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center_horizontal|top"
+        android:text="@string/office_senator"
+        android:textAppearance="@style/office_senator"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/bio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rectangle_3" />
 
     <ImageView
         android:id="@+id/image3"
-        android:layout_width="88dp"
-        android:layout_height="90dp"
-        app:layout_constraintBottom_toBottomOf="@+id/rectangle_5"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="@+id/rectangle_5"
-        app:layout_constraintHorizontal_bias="0.073"
+        app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintStart_toStartOf="@+id/rectangle_5"
-        app:layout_constraintTop_toTopOf="@+id/rectangle_5"
+        app:layout_constraintTop_toBottomOf="@+id/office_district"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -107,32 +104,28 @@
         android:layout_height="53dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="44dp"
         android:fontFamily="@font/roboto_regular"
         android:gravity="top"
         android:text="@string/your_distri"
         android:textAppearance="@style/your_distri"
-        app:layout_constraintBottom_toBottomOf="@+id/rectangle_3"
         app:layout_constraintEnd_toEndOf="@+id/rectangle_3"
-        app:layout_constraintHorizontal_bias="0.911"
+        app:layout_constraintHorizontal_bias="0.888"
         app:layout_constraintStart_toStartOf="@+id/rectangle_3"
-        app:layout_constraintTop_toTopOf="@+id/rectangle_3"
-        app:layout_constraintVertical_bias="0.222" />
+        app:layout_constraintTop_toBottomOf="@+id/office_senator" />
 
-    <Button
-        android:id="@+id/moreInfo1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#000000"
-        android:fontFamily="@font/roboto_regular"
-        android:text="MORE INFO"
-        android:textAllCaps="false"
-        android:textColor="#ffffff"
-        app:layout_constraintBottom_toBottomOf="@+id/rectangle_3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.656"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rectangle_3"
-        app:layout_constraintVertical_bias="0.918" />
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="@+id/rectangle_3"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="@+id/rectangle_3"
+        app:layout_constraintTop_toBottomOf="@+id/office_senator"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <!-- Black Lives Matter -->
 
     <Button
         android:id="@+id/moreInfo2"
@@ -143,12 +136,53 @@
         android:text="MORE INFO"
         android:textAllCaps="false"
         android:textColor="#ffffff"
-        app:layout_constraintBottom_toBottomOf="@+id/rectangle_4"
-        app:layout_constraintEnd_toEndOf="@+id/rectangle_4"
-        app:layout_constraintHorizontal_bias="0.687"
-        app:layout_constraintStart_toStartOf="@+id/rectangle_4"
-        app:layout_constraintTop_toTopOf="@+id/rectangle_4"
-        app:layout_constraintVertical_bias="0.86" />
+        app:layout_constraintEnd_toEndOf="@+id/rectangle_3"
+        app:layout_constraintHorizontal_bias="0.679"
+        app:layout_constraintStart_toStartOf="@+id/rectangle_3"
+        app:layout_constraintTop_toBottomOf="@+id/repDescription2" />
+
+    <TextView
+        android:id="@+id/repDescription2"
+        android:layout_width="224dp"
+        android:layout_height="53dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="68dp"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="top"
+        android:text="@string/your_state_1"
+        android:textAppearance="@style/your_state_1"
+        app:layout_constraintBottom_toBottomOf="@+id/rectangle_3"
+        app:layout_constraintEnd_toEndOf="@+id/rectangle_3"
+        app:layout_constraintHorizontal_bias="0.238"
+        app:layout_constraintStart_toEndOf="@+id/image2" />
+
+    <ImageView
+        android:id="@+id/image2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/rectangle_3"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="@+id/rectangle_3"
+        app:layout_constraintTop_toBottomOf="@+id/image1"
+        tools:srcCompat="@tools:sample/avatars" />
+
+
+    <Button
+        android:id="@+id/moreInfo1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:fontFamily="@font/roboto_regular"
+        android:text="MORE INFO"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.665"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repDescription1" />
 
     <Button
         android:id="@+id/moreInfo3"
@@ -159,47 +193,53 @@
         android:text="MORE INFO"
         android:textAllCaps="false"
         android:textColor="#ffffff"
-        app:layout_constraintBottom_toBottomOf="@+id/rectangle_5"
         app:layout_constraintEnd_toEndOf="@+id/rectangle_5"
-        app:layout_constraintHorizontal_bias="0.687"
+        app:layout_constraintHorizontal_bias="0.671"
         app:layout_constraintStart_toStartOf="@+id/rectangle_5"
-        app:layout_constraintTop_toTopOf="@+id/rectangle_5"
-        app:layout_constraintVertical_bias="0.872" />
+        app:layout_constraintTop_toBottomOf="@+id/repDescription3" />
 
-    <TextView
-        android:id="@+id/repDescription2"
-        android:layout_width="224dp"
-        android:layout_height="53dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:fontFamily="@font/roboto_regular"
-        android:gravity="top"
-        android:text="@string/your_state_1"
-        android:textAppearance="@style/your_state_1"
-        app:layout_constraintBottom_toBottomOf="@+id/rectangle_4"
-        app:layout_constraintEnd_toEndOf="@+id/rectangle_4"
-        app:layout_constraintHorizontal_bias="0.911"
-        app:layout_constraintStart_toStartOf="@+id/rectangle_4"
-        app:layout_constraintTop_toTopOf="@+id/rectangle_4"
-        app:layout_constraintVertical_bias="0.259" />
-
-    <!-- Black Lives Matter -->
     <TextView
         android:id="@+id/repDescription3"
         android:layout_width="224dp"
         android:layout_height="53dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="44dp"
         android:fontFamily="@font/roboto_regular"
         android:gravity="top"
         android:text="@string/your_state_2"
         android:textAppearance="@style/your_state_2"
-        app:layout_constraintBottom_toBottomOf="@+id/rectangle_5"
         app:layout_constraintEnd_toEndOf="@+id/rectangle_5"
-        app:layout_constraintHorizontal_bias="0.911"
-        app:layout_constraintStart_toStartOf="@+id/rectangle_5"
-        app:layout_constraintTop_toTopOf="@+id/rectangle_5"
-        app:layout_constraintVertical_bias="0.185" />
+        app:layout_constraintStart_toEndOf="@+id/image3"
+        app:layout_constraintTop_toBottomOf="@+id/office_district" />
+
+    <TextView
+        android:id="@+id/division_senator"
+        android:layout_width="194dp"
+        android:layout_height="22dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center_horizontal|top"
+        android:text="@string/division_senator"
+        android:textAppearance="@style/division_senator"
+        app:layout_constraintEnd_toEndOf="@+id/rectangle_3"
+        app:layout_constraintStart_toStartOf="@+id/rectangle_3"
+        app:layout_constraintTop_toBottomOf="@+id/office_senator" />
+
+    <TextView
+        android:id="@+id/division_district"
+        android:layout_width="360dp"
+        android:layout_height="23dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center_horizontal|top"
+        android:text="@string/division_district"
+        android:textAppearance="@style/division_district"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/office_district" />
 
     <TextView
         android:id="@+id/black_lives"
@@ -207,14 +247,15 @@
         android:layout_height="58dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/roboto_bold"
         android:gravity="center_horizontal|top"
         android:text="@string/black_lives"
         android:textAppearance="@style/black_lives"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rectangle_5" />
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/back"
