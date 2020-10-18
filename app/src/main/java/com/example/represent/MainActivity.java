@@ -249,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
                         if (currentAddress.equals("random")) {
                             // Bad random zipcode. Try one of the preset zips
                             Log.d("Error", "Bad random zip");
-                            fetchCivicInfo("94110");
+                            fetchCivicInfo("random"); // Or, pull from list of zips
                         } else {
                             // User entered bad address
                             Toast.makeText(MainActivity.this, "Enter a Valid Address", Toast.LENGTH_SHORT).show();
