@@ -27,6 +27,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     // Declare widgets
     ImageButton getGPS;
     Button search;
+    Button random;
     EditText searchAddress;
 
     @Override
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         getGPS = findViewById(R.id.getGPS);
         search = findViewById(R.id.search);
+        random = findViewById(R.id.random);
         searchAddress = findViewById(R.id.searchAddress);
 
         Log.d("getGPS", "" + getGPS);
@@ -95,10 +98,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String currentAddress = searchAddress.getText().toString();
-                fetchCivicInfo(currentAddress);
+                if (currentAddress.equals("")) {
+                    // To Do: Toast saying please enter an address
+                    Toast.makeText(MainActivity.this, "Enter an Address", Toast.LENGTH_SHORT).show();
+                } else {
+                    fetchCivicInfo(currentAddress);
+                }
             }
         });
 
+        random.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fetchCivicInfo("random");
+            }
+        });
     }
 
     private void fetchLocation(LocationManager mLocationManager) {
@@ -167,13 +181,23 @@ public class MainActivity extends AppCompatActivity {
         return latLng;
     }
 
-    private void fetchCivicInfo(String currentAddress) {
+    private void fetchCivicInfo(final String currentAddress) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String offices = "includeOffices=true&";
+
+        String address = "";
+        if (currentAddress.equals("random")) {
+            // Pick a random location
+            address = randomZipcode();
+        } else {
+            address = currentAddress;
+        }
+
+        String offices = "&includeOffices=true&";
         String levels = "levels=country&";
         String roles = "roles=legislatorLowerBody&roles=legislatorUpperBody&";
         String API_KEY = "key=AIzaSyBRmaiRao6Mwxqr5Luxvnpc5wuTewDl7J4";
-        String url = "https://www.googleapis.com/civicinfo/v2/representatives?address=" + currentAddress + offices + levels + roles + API_KEY;
+        String url = "https://www.googleapis.com/civicinfo/v2/representatives?address=" + address + offices + levels + roles + API_KEY;
+        Log.d("search api url: ", url);
 
         // Request a json response from the API endpoint
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
@@ -181,7 +205,6 @@ public class MainActivity extends AppCompatActivity {
                     @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void onResponse(JSONObject response) {
-
                         // Declare variables
                         // String formattedAddress = new String();
                         JSONArray offices;
@@ -222,12 +245,28 @@ public class MainActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d("error", "Error: " + error);
-                        searchAddress.setText("Error Converting Address");
+                        Log.d("error", "Error" + error);
+                        if (currentAddress.equals("random")) {
+                            // Bad random zipcode. Try one of the preset zips
+                            Log.d("Error", "Bad random zip");
+                            fetchCivicInfo("94110");
+                        } else {
+                            // User entered bad address
+                            Toast.makeText(MainActivity.this, "Enter a Valid Address", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 
         // Add the API request to the RequestQueue.
         queue.add(jsonObjectRequest);
     }
+
+    private String randomZipcode() {
+        int min = 10000;
+        int max = 99950;
+        int newZip = (int)(Math.random()*(max-min+1)+min);
+        Log.d("new zip", "" + newZip);
+        return String.valueOf(newZip);
+    }
+
 }
