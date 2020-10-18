@@ -54,19 +54,18 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d("getGPS", "" + getGPS);
 
+//        final int ACCESS_FINE_LOCATION_CODE = 7;
+//        final int ACCESS_COARSE_LOCATION_CODE = 8;
+//        final int TAG_CODE_PERMISSION_LOCATION = 1;
 
         // Start Listening for GPS coordinates
         // 1. Check the app has been granted the right permissions by the user
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Log.d("permission-check", "Invalid permissions to perform GPS check");
-            // To Do: Currently need to manually set the location permissions in the emulator settings
-            // (cont.) Request permission instead
-            // example:
-            // ActivityCompat.requestPermissions(this, new String[] {
-            //                Manifest.permission.ACCESS_FINE_LOCATION,
-            //                Manifest.permission.ACCESS_COARSE_LOCATION },
-            //        TAG_CODE_PERMISSION_LOCATION);
-            return;
+            // Request permissions
+            ActivityCompat.requestPermissions(this, new String[] {
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION }, 1);
         }
         // 2. Create Listener for new GPS position
         LocationListener mLocationListener = new LocationListener() {
@@ -164,13 +163,10 @@ public class MainActivity extends AppCompatActivity {
         // Check Permissions
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Log.d("permission-check", "Invalid permissions to perform GPS check");
-            // To Do: Currently need to manually set the location permissions in the emulator settings
-            // (cont.) Request permission instead
-            // example:
-            // ActivityCompat.requestPermissions(this, new String[] {
-            //                Manifest.permission.ACCESS_FINE_LOCATION,
-            //                Manifest.permission.ACCESS_COARSE_LOCATION },
-            //        TAG_CODE_PERMISSION_LOCATION);
+            // Request Permission
+             ActivityCompat.requestPermissions(this, new String[] {
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION }, 1);
         } else {
             // Get current gps cords
             Location currentGPS = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
