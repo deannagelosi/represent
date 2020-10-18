@@ -2,7 +2,9 @@
 
 Represent! is a mobile app that displays current U.S. representatives for a given address. It allows users to search an address either manually, by using their current location, or a randomly selected zip code.
 
-![Screenshot of Represent!](imp/mainActivity.png)
+![Screenshot of Represent!](screenshots/activityMain.png)
+![Representatives page](screenshots/representatives.png)
+![Profile page](screenshots/profile.png)
 
 ## Author
 
