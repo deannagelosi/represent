@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     private void fetchLocation(LocationManager mLocationManager) {
         // Reverse Geocoding API Request
         RequestQueue queue = Volley.newRequestQueue(this);
-        String API_KEY = "AIzaSyBRmaiRao6Mwxqr5Luxvnpc5wuTewDl7J4";
+        String API_KEY = ""; // Put API key here
         String type = "result_type=street_address";
         String latLng = currentGPS(mLocationManager);
         String url = "https://maps.googleapis.com/maps/api/geocode/json?" + type + "&latlng=" + latLng + "&key=" + API_KEY;
